@@ -25,28 +25,6 @@ Project Structure
 
 This repository is organized as follows:
 
-.
-├── library
-│   ├── audio
-│   │   └── [custom folders for your audio files]
-│   └── video
-│       └── outro.mp4 (optional)
-├── modules
-│   ├── ai.py
-│   ├── censor.py
-│   ├── music.py
-│   ├── prompts.py
-│   ├── renderer.py
-│   ├── segments.py
-│   ├── transcribe.py
-│   └── utils.py
-├── temp
-│   └── transcript.json
-├── edit.py
-├── Pipfile
-├── Pipfile.lock
-└── readme.md
-
     library/:
         audio/: Create custom folders to categorize your audio files. You can name the folders anything you like and have as many as you need.
         video/: Optionally include an outro video (e.g., outro.mp4) if you'd like to append it to the final video.
