@@ -43,6 +43,12 @@ def main():
         help="A path to an outro video that will be tacked onto the end. Defaults to library/video/outro.mp4",
         default="library/video/outro.mp4",
     )
+    parser.add_argument(
+        "--filter", 
+        type=bool, 
+        help="Whether or not to enable the profanity filter, defaults to True",
+        default=True,
+    )
     
     args = parser.parse_args()
     
@@ -70,7 +76,7 @@ def main():
 
     for i,v in enumerate(segments):
         keep = ai.decide_to_keep_segment(segments, i)
-        if keep == "filter":
+        if keep == "filter" and args.filter:
             # Filter for profanity
             print(f"Filtering Segment {i}: {v["text"]}")
             beeps = ai.filter_segment_words(segments, i)

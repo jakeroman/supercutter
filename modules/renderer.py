@@ -47,6 +47,7 @@ class VideoRenderer:
             # Create subclips based on start and end times
             clips = []
             for i,segment in enumerate(segments):
+                print(f"Rendering: Segment {i+1}/{len(segments)}")
                 if segment.get("external_file"):
                     # External Source
                     subclip = VideoFileClip(segment["external_file"])
