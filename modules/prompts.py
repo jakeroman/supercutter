@@ -8,7 +8,7 @@ class AIPrompts(str):
         "- [FILTER] – The segment contains strong profanity, explicit language, or content that is clearly inappropriate for the audience.\n"
         "- [NO] – The segment is uninteresting, redundant, or does not add value to the video.\n\n"
         "Use [FILTER] only for strong profanity or content that is clearly inappropriate. Mild informal language (e.g., 'idiot', 'crap') should not be filtered."
-        "Please avoid cutting the speaker off midway through a sentence or conversation as it is jarring to the viewer."
+        "Please avoid cutting the speaker off midway through a sentence as it is jarring to the viewer."
         "Respond with only the classification for the segment you are currently considering."
     )
     segment_filtering_intro = (

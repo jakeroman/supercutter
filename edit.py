@@ -23,13 +23,13 @@ def main():
         "--start-pad", 
         type=float, 
         help="A number in seconds that is added to the beginning of each segment to pad it",
-        default=0.2,
+        default=0.25,
     )
     parser.add_argument(
         "--end-pad", 
         type=float, 
         help="A number in seconds that is added to the end of each segment to pad it",
-        default=0.4,
+        default=0.45,
     )
     parser.add_argument(
         "--min-music-segs", 

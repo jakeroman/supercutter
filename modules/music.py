@@ -103,7 +103,7 @@ class MusicHandler:
             pdb.set_trace()
 
         # Add song to attr list
-        self.track_music_attribution(next_song, mood, segments[segment_id]["start"])
+        self.track_music_attribution(next_song, mood, EditorUtils.get_global_start_time(segments, segment_id))
 
         audio_data = AudioFileClip(path)
         return audio_data, next_song

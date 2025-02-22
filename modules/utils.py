@@ -93,3 +93,15 @@ class EditorUtils:
                     pass  # Ignore errors if already closed
 
         gc.collect()
+
+
+    @staticmethod
+    def get_global_start_time(segments, segment_id):
+        """Returns the global start time by summing up segment durations before segment_id."""
+        if not isinstance(segments, list) or not all(isinstance(seg, dict) for seg in segments):
+            raise ValueError("Invalid input: segments must be a list of dictionaries.")
+
+        if not (0 <= segment_id <= len(segments)):  # Allow `segment_id == len(segments)` for completeness
+            raise IndexError("segment_id out of valid range.")
+
+        return sum(seg["end"] - seg["start"] for seg in segments[:segment_id])
