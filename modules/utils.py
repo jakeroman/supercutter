@@ -2,6 +2,7 @@ import gc
 import json
 import os
 import shutil
+import imageio_ffmpeg as ffmpeg
 
 
 class EditorUtils:

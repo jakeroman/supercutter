@@ -54,7 +54,10 @@ class VideoRenderer:
                     subclip = subclip.resized(video.size) # Resize external clip to align
                 else:
                     # Standard
-                    subclip = self.make_subclip(video, segments, i)
+                    try:
+                        subclip = self.make_subclip(video, segments, i)
+                    except Exception as e:
+                        print(f"Error occurred during subclip creation: {e}")
 
                 if subclip:
                     clips.append(subclip)
@@ -70,7 +73,7 @@ class VideoRenderer:
             print(f"Video successfully saved to {output_path}")
 
         except Exception as e:
-            print(f"An error occurred: {e}")
+            print(f"Error occured during stitching: {e}")
 
 
     def add_subtitles(self):

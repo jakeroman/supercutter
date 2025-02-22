@@ -2,12 +2,12 @@ class AIPrompts(str):
     segments_intro = "Each one of these segments represents a potential part of the video:\n"
     current_segment = "The segment you are currently considering is: "
     decide_to_keep_segment = (
-        "Please evaluate whether this segment enhances the video’s quality and aligns with appropriate content standards. "
+        "Please evaluate whether this segment enhances the video’s quality."
         "Classify it as follows:\n\n"
         "- [YES] – The segment is engaging, relevant, and appropriate for inclusion.\n"
         "- [FILTER] – The segment contains strong profanity, explicit language, or content that is clearly inappropriate for the audience.\n"
         "- [NO] – The segment is uninteresting, redundant, or does not add value to the video.\n\n"
-        "Use [FILTER] only for strong profanity or content that is clearly inappropriate. Mild informal language (e.g., 'idiot', 'crap') should generally not be filtered unless it is used in a derogatory or offensive way."
+        "Use [FILTER] only for strong profanity or content that is clearly inappropriate. Mild informal language (e.g., 'idiot', 'crap') should not be filtered."
         "Respond with only the classification for the segment you are currently considering."
     )
     segment_filtering_intro = (
