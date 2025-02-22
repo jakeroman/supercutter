@@ -39,3 +39,4 @@ class AIPrompts(str):
         "When selecting a new mood, consider whether the previous mood is still appropriate."
         "Please respond with the number associated with the mood you would like to choose in the format [0], and **only choose from the provided options**."
     )
+    description_generator = "Write a concise YouTube description that clearly explains what the video is about, using natural language. Avoid being cringy, inappropriate, or overly sensational. Incorporate relevant keywords for SEO and summarize key elements of the video without adding timestamps or fabricating specific moments. End with a brief call to action. Respond with only the description."

@@ -71,6 +71,9 @@ class VideoRenderer:
             final_video.write_videofile(output_path, codec="libx264", fps=30, logger="bar")
 
             print(f"Video successfully saved to {output_path}")
+            return {
+                "music_attr": self.music_handler.generate_music_attributed_description()
+            }
 
         except Exception as e:
             print(f"Error occured during stitching: {e}")

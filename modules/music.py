@@ -11,6 +11,7 @@ class MusicHandler:
     def __init__(self):
         self.mood_state = {}  # Keeps track of moods and their respective song positions
         self.last_mood = None  # Track the last mood for crossfading
+        self.music_attributions = {}  # Tracks first occurrences of songs
 
 
     def get_moods(self):
@@ -101,6 +102,9 @@ class MusicHandler:
             print("Error accessing:",path)
             pdb.set_trace()
 
+        # Add song to attr list
+        self.track_music_attribution(next_song, mood, segments[segment_id]["start"])
+
         audio_data = AudioFileClip(path)
         return audio_data, next_song
 
@@ -123,3 +127,21 @@ class MusicHandler:
 
     def get_song_state(self, mood, song, param, default=0):
         return self.mood_state[mood].get(song, {}).get(param, default)
+        
+
+    def track_music_attribution(self, song_name, mood, timestamp):
+        """
+        Records the first appearance of a song with a timestamp.
+        """
+        if song_name not in self.music_attributions:
+            minutes = int(timestamp // 60)
+            seconds = int(timestamp % 60)
+            formatted_timestamp = f"{minutes}:{seconds:02d}"
+            self.music_attributions[song_name] = f"[{formatted_timestamp}] {song_name.split(".")[0]}"
+
+
+    def generate_music_attributed_description(self):
+        """
+        Returns a formatted string of music usage, showing the first appearance of each song.
+        """
+        return "\n".join(self.music_attributions.values())

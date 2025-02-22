@@ -126,11 +126,19 @@ def main():
     # Stitch
     print(">> Rendering")
     stitcher = VideoRenderer()
-    stitcher.stitch_segments(video_path=args.video, segments=segments, output_path="temp/output.mp4")
+    render_result = stitcher.stitch_segments(video_path=args.video, segments=segments, output_path="temp/output.mp4") or {}
 
     # Done
     EditorUtils.cleanup_file_readers()
-    print("\n\n\n\n\n ☑️  Video saved to temp/output.mp4")
+    print("\n\n\n\n\n ☑️  Video saved to temp/output.mp4\n")
+
+    # Generate Description
+    print(">> Generated Description:")
+    desc = ai.generate_description(segments)
+    print(desc)
+
+    print("\nMusic:")
+    print(render_result.get("music_attr","Music attributions unavailable."))
 
 if __name__ == "__main__":
     main()

@@ -161,3 +161,12 @@ class AIHandler:
             except Exception as e:
                 print(f"Error evaluating list: {e}")
         return []
+
+
+    def generate_description(self, segments):
+        """Makes a description based on the whole video context"""
+        context = ""
+        for i in segments:
+            context += (i.get("text","") + " ")
+        context += ("\n" + AIPrompts.description_generator)
+        return self.generate_response(context)
