@@ -1,6 +1,6 @@
-# AI Video Editing Tool
+# Supercutter
 
-Welcome to the AI Video Editing Tool! This project automates and streamlines video editing using AI, combining audio and video with modular flexibility. The tool leverages powerful hardware and advanced AI models to achieve optimal results.
+Welcome to my AI Video Editing Tool, Supercutter! This project automates and streamlines video editing using AI, combining audio and video with modular flexibility. The tool leverages powerful hardware and advanced AI models to achieve optimal results.
 
 ---
 
