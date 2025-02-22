@@ -8,6 +8,7 @@ class AIPrompts(str):
         "- [FILTER] – The segment contains strong profanity, explicit language, or content that is clearly inappropriate for the audience.\n"
         "- [NO] – The segment is uninteresting, redundant, or does not add value to the video.\n\n"
         "Use [FILTER] only for strong profanity or content that is clearly inappropriate. Mild informal language (e.g., 'idiot', 'crap') should not be filtered."
+        "Please avoid cutting the speaker off midway through a sentence or conversation as it is jarring to the viewer."
         "Respond with only the classification for the segment you are currently considering."
     )
     segment_filtering_intro = (
@@ -15,8 +16,16 @@ class AIPrompts(str):
         "Focus on filtering only explicit profanity, offensive language, or sensitive information if absolutely necessary.\n"
     )
     segment_filtering_prompt = (
-        "Please review the provided words and decide which, if any, should be censored. This should only include things like excessive profanity, explicit language, etc. Regular conversational english words should never be censored"
-        "or sensitive personal information. Respond with the list of word numbers to censor, formatted as [1, 3, 6]. If no words need to be censored, simply respond with an empty list: []"
+        "Review the provided words and identify only those that should be censored. "
+        "Censorship should apply strictly to the following categories:\n"
+        "- Strong profanity or obscene language.\n"
+        "- Explicit or highly offensive terms.\n"
+        "- Sensitive personal information (e.g., full names, addresses, phone numbers).\n\n"
+        "Do NOT censor regular conversational English words, including:\n"
+        "- Mild negative words (e.g., 'dumb', 'stupid', 'kill', 'steal' in non-explicit contexts).\n"
+        "- Informal expressions and slang that are not offensive.\n\n"
+        "Respond with a list of word indices that should be censored, formatted as a Python list (e.g., [1, 3, 6]). "
+        "If no words need to be censored, respond with an empty list: []."
     )
     song_selector_intro = "Here's a list of songs you can choose from to be background music for this part of the video. Your task is to pick the one best suited to the context and mood.\n"
     song_selector_prompt = "Please respond with the number associated with the song you would like to choose in the format [5] for example."

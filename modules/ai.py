@@ -118,6 +118,9 @@ class AIHandler:
         end_index = min(len(segments), segment_id + (context_range + 1))  # +11 to include segment_id itself
 
         for i in range(start_index, end_index):
+            if segments[i].get("cut"):
+                continue # Just skip removed segments
+
             if i == segment_id:
                 message += "YOUR "
 
@@ -125,8 +128,6 @@ class AIHandler:
 
             if include_music:
                 message += f"[Music: {segments[i].get("music") or "TBD"}] " # Add music mood indicator
-
-            message += segments[i]["text"] + (" [Segment Removed]\n" if segments[i].get("cut") else "\n") # Add indicator if segment removed
 
         # Add a reminder about the current segment:
         message += AIPrompts.current_segment
