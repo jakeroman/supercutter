@@ -23,13 +23,13 @@ def main():
         "--start-pad", 
         type=float, 
         help="A number in seconds that is added to the beginning of each segment to pad it",
-        default=0.25,
+        default=0.2,
     )
     parser.add_argument(
         "--end-pad", 
         type=float, 
         help="A number in seconds that is added to the end of each segment to pad it",
-        default=0.45,
+        default=0.35,
     )
     parser.add_argument(
         "--min-music-segs", 
@@ -44,10 +44,9 @@ def main():
         default="library/video/outro.mp4",
     )
     parser.add_argument(
-        "--filter", 
-        type=bool, 
-        help="Whether or not to enable the profanity filter, defaults to True",
-        default=True,
+        "--nofilter", 
+        action="store_true",
+        help="Disables the profanity filter",
     )
     
     args = parser.parse_args()
@@ -76,7 +75,7 @@ def main():
 
     for i,v in enumerate(segments):
         keep = ai.decide_to_keep_segment(segments, i)
-        if keep == "filter" and args.filter:
+        if keep == "filter" and (not args.nofilter):
             # Filter for profanity
             print(f"Filtering Segment {i}: {v["text"]}")
             beeps = ai.filter_segment_words(segments, i)
