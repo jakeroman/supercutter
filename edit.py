@@ -48,6 +48,11 @@ def main():
         action="store_true",
         help="Disables the profanity filter",
     )
+    parser.add_argument(
+        "--prompt", 
+        type=str, 
+        help="Optionally add a prompt to each LLM call to guide it on this particular video.",
+    )
     
     args = parser.parse_args()
     
@@ -71,7 +76,7 @@ def main():
 
     # AI Segment Cutting
     print(">> AI Segment Cutting")
-    ai = AIHandler()
+    ai = AIHandler(user_prompt=args.prompt)
 
     for i,v in enumerate(segments):
         keep = ai.decide_to_keep_segment(segments, i)

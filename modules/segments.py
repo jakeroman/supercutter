@@ -25,7 +25,7 @@ class SegmentHandler:
             if i < len(segments) - 1:
                 next_start = segments[i + 1]["start"]
                 if new_end > next_start:
-                    new_end = next_start - 0.01  # Small buffer to avoid touching\
+                    new_end = next_start - 0.01  # Small buffer to avoid touching
 
             # Check final segment does not exceed video      
             if i == len(segments) - 1:

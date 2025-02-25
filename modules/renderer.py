@@ -58,6 +58,7 @@ class VideoRenderer:
                         subclip = self.make_subclip(video, segments, i)
                     except Exception as e:
                         print(f"Error occurred during subclip creation: {e}")
+                        continue
 
                 if subclip:
                     clips.append(subclip)

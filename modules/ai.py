@@ -5,11 +5,12 @@ import ollama
 from modules.prompts import AIPrompts
 
 
-DEFAULT_MODEL = "qwen2.5:14b"
+DEFAULT_MODEL = "llama3.2:latest"
 
 class AIHandler:
-    def __init__(self, model: str | None = None):
+    def __init__(self, model: str | None = None, user_prompt: str | None = None):
         self.model = model or DEFAULT_MODEL
+        self.user_prompt = user_prompt or ""
 
 
     def generate_response(self, prompt):
@@ -17,9 +18,8 @@ class AIHandler:
         # print("AI Prompt: ",prompt)
         res = ollama.generate(
             model=self.model,
-            prompt=prompt,
+            prompt=prompt + self.user_prompt,
         )
-        # print("AI Response: ",res.response)
         return res.response
     
     
