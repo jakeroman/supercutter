@@ -9,7 +9,7 @@ class AIPrompts(str):
         "- [NO] – The segment is uninteresting, redundant, or does not add value to the video.\n\n"
         "Use [FILTER] only for strong profanity or content that is clearly inappropriate. Mild informal language (e.g., 'idiot', 'crap') should not be filtered."
         "Please avoid cutting the speaker off midway through a sentence as it is jarring to the viewer."
-        "Respond with only the classification for the segment you are currently considering."
+        "Think through it for a moment, then respond with the classification for the segment you are currently considering."
     )
     segment_filtering_intro = (
         "Here's a list of words, each labeled with a number. Your task is to review the list and identify any words that might need to be censored. "
@@ -28,7 +28,7 @@ class AIPrompts(str):
         "If no words need to be censored, respond with an empty list: []."
     )
     song_selector_intro = "Here's a list of songs you can choose from to be background music for this part of the video. Your task is to pick the one best suited to the context and mood.\n"
-    song_selector_prompt = "Please respond with the number associated with the song you would like to choose in the format [5] for example."
+    song_selector_prompt = "Think through it for a moment, then respond with the number associated with the song you would like to choose in the format [5] for example."
     mood_selector_intro = "Here's a list of music categories you can choose from to be background music for this part of the video. Your task is to pick the one best suited to the context and overall energy.\n"
     mood_selector_prompt = (
         "Each segment above has a corresponding music mood."
@@ -37,6 +37,6 @@ class AIPrompts(str):
         "Mood changes should feel **natural and intentional**, not abrupt or random."
         "Prioritize consistency, but adapt when the pacing, energy, or emotions in the scene clearly call for a shift."
         "When selecting a new mood, consider whether the previous mood is still appropriate."
-        "Please respond with the number associated with the mood you would like to choose in the format [0], and **only choose from the provided options**."
+        "Think through it for a moment, then respond with the number associated with the mood you would like to choose in the format [0], and **only choose from the provided options**."
     )
     description_generator = "Write a concise YouTube description that clearly explains what the video is about, using natural language. Avoid being cringy, inappropriate, or overly sensational. Incorporate relevant keywords for SEO and summarize key elements of the video without adding timestamps or fabricating specific moments. End with a brief call to action. Respond with only the description."

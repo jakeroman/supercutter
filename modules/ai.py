@@ -5,7 +5,7 @@ import ollama
 from modules.prompts import AIPrompts
 
 
-DEFAULT_MODEL = "llama3.2:latest"
+DEFAULT_MODEL = "deepseek-r1:8b"
 
 class AIHandler:
     def __init__(self, model: str | None = None, user_prompt: str | None = None):
@@ -19,7 +19,12 @@ class AIHandler:
         res = ollama.generate(
             model=self.model,
             prompt=prompt + self.user_prompt,
+            options={
+                "temperature": 0.5,  # Adjust randomness (higher = more creative)
+            }
         )
+        print("Supercutter:",prompt + self.user_prompt)
+        print("AI Response:",res.response)
         return res.response
     
     
