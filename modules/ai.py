@@ -139,23 +139,26 @@ class AIHandler:
 
         return message
 
-    
+
 
     def _extract_list_from_text(self, response_text):
         """
-        Extracts a list of integers from a given text.
+        Extracts the last instance of a list of integers from a given text.
 
         Args:
             response_text (str): The text from which to extract the list.
 
         Returns:
-            list: A list of integers if found, otherwise an empty list.
+            list: The last list of integers found, otherwise an empty list.
         """
-        # Use a regex pattern to find something that looks like a Python list
-        match = re.search(r'\[(\s*\d+\s*(,\s*\d+\s*)*)\]', response_text)
-        if match:
-            # Extract the matched portion (e.g., "[1, 3, 6]")
-            list_string = match.group(0)
+        # Use regex to find all occurrences of a Python-like list
+        matches = re.findall(r'\[(\s*\d+\s*(?:,\s*\d+\s*)*)\]', response_text)
+
+        if matches:
+            # Get the last matched list
+            last_match = matches[-1]
+            list_string = f"[{last_match}]"  # Reconstruct the full list string
+
             try:
                 # Safely evaluate the string to turn it into a Python list
                 extracted_list = eval(list_string)
@@ -164,8 +167,9 @@ class AIHandler:
                     return extracted_list
             except Exception as e:
                 print(f"Error evaluating list: {e}")
-        return []
 
+        return []
+    
 
     def generate_description(self, segments):
         """Makes a description based on the whole video context"""
