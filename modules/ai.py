@@ -25,7 +25,7 @@ class AIHandler:
         # Remove content inside <think>...</think> tags
         clean_response = re.sub(r'<think>.*?</think>', '', res.response, flags=re.DOTALL).strip()
 
-        print("Supercutter:", prompt + self.user_prompt)
+        print("Supercutter:", prompt)
         print("AI Response:", clean_response)
         
         return clean_response
@@ -135,11 +135,16 @@ class AIHandler:
             if include_music:
                 message += f"[Music: {segments[i].get("music") or "TBD"}] " # Add music mood indicator
                 
-            message += segments[i]["text"] + (" [Segment Removed]\n" if segments[i].get("cut") else "\n") # Add indicator if segment removed
+            message += segments[i]["text"] + " " # Add message text
+
+            if segments[i].get("cut"):
+                message += "[Segment Removed] " # Add indicator if segment removed
+            
+            message += "\n"
 
         # Add a reminder about the current segment:
         message += AIPrompts.current_segment
-        message += f"Segment {segment_id}: {segments[segment_id]['text']}\n"
+        message += f"Segment {segment_id}: {segments[segment_id]['text']} (Speech Probability: {int((1-segments[i].get("no_speech_prob",1))*100)}%)\n"
 
         return message
 
