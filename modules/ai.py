@@ -1,3 +1,4 @@
+import ast
 import pdb
 import re
 import ollama
@@ -70,11 +71,14 @@ class AIHandler:
         # Turn that into beeps
         beeps = []
         for i in censor:
-            word = segment["words"][i]
-            beeps.append({
-                "start_time": word["start"] - segment["start"],
-                "duration": word["end"] - word["start"]
-            })
+            if 0 <= i < len(segment["words"]):
+                word = segment["words"][i]
+                beeps.append({
+                    "start_time": word["start"] - segment["start"],
+                    "duration": word["end"] - word["start"]
+                })
+            else:
+                print(f"Index {i} is out of range for words list of length {len(segment['words'])}")
 
         return beeps
             
@@ -167,7 +171,7 @@ class AIHandler:
             list_string = match.group(0)
             try:
                 # Safely evaluate the string to turn it into a Python list
-                extracted_list = eval(list_string)
+                extracted_list = ast.literal_eval(list_string)
                 # Ensure it's a list of integers
                 if isinstance(extracted_list, list) and all(isinstance(x, int) for x in extracted_list):
                     return extracted_list
